@@ -16,15 +16,11 @@ function App() {
                ]);
   };
 
-  //console.log(contador);
-
   return (
-    <div>
+    <div className='App'>
       <table>
-        <thead>
+        <thead className='Head'>
           <tr>
-            
-          
               { listaAba.map((value) =>
                 <th key={value.pagina}>Personagem {value.pagina}</th>
               )} 

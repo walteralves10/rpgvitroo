@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Personagem.css';
 
 function Personagem() {
 
@@ -27,7 +28,7 @@ function Personagem() {
     }
   
     return (
-      <div className="Personagem" style={{}}>     
+      <div className="Label">     
         <div>
             <label>
             Nome: 
@@ -55,7 +56,7 @@ function Personagem() {
         <div>
             <label>
             PV Atual: 
-                <input style={{width: '50px'}}
+                <input className='InputAtual' 
                     type="text" 
                     placeholder='Atual'
                     value={atual} 
@@ -64,7 +65,7 @@ function Personagem() {
             </label>
         
           <input 
-            style={{width:'30px', marginLeft:'5px'}}
+            className='InputCal'
             type="text" 
             placeholder='calc...'
             value={cal} 
@@ -72,13 +73,13 @@ function Personagem() {
           />
           
           <button 
-            style={{marginLeft:'10px'}}
+            className='ButtonSoma'
             onClick={somaPVAtual}>
               +
           </button>
           
           <button 
-            style={{marginLeft:'2px'}}
+            className='ButtonSubtrai'
             onClick={subtraiPVAtual}>
               -
           </button>        

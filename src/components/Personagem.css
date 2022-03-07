@@ -1,0 +1,28 @@
+.Label {
+    color: white;
+  }
+
+  .InputNome {
+      
+  }
+
+  .InputTotal {
+
+  }
+
+  .InputAtual {
+    width: 50px;
+  }
+
+  .InputCal {
+      width: 30px;
+      margin-left: 5px;
+  }
+
+  .ButtonSoma {
+      margin-left: 10px;
+  }
+
+  .ButtonSubtrai {
+      margin-left: 2px;
+  }
