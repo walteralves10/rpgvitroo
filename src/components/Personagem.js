@@ -82,9 +82,41 @@ function Personagem() {
             className='ButtonSubtrai'
             onClick={subtraiPVAtual}>
               -
-          </button>        
+          </button>     
         
         </div>
+        
+        <div style={{paddingTop: '15px'}}>
+          <label style={{display: 'inline-grid'}}> FOR
+            <input className='InputCal' />
+          </label>
+          <label style={{display: 'inline-grid'}}> DES
+            <input className='InputCal' />
+          </label>
+          <label style={{display: 'inline-grid'}}> CON
+            <input className='InputCal' />
+          </label>
+        </div>
+
+        <div>
+          <label style={{display: 'inline-grid'}}> INT
+            <input className='InputCal' />
+          </label>
+          <label style={{display: 'inline-grid'}}> SAB
+            <input className='InputCal' />
+          </label>
+          <label style={{display: 'inline-grid'}}> CAR
+            <input className='InputCal' />
+          </label>
+        </div>
+
+        <div className='DivTextArea'>
+          <label>
+            Descrição: 
+            <textarea className='TextAreaDescricao' />
+          </label>
+        </div>
+        
       </div>
     );
   }
