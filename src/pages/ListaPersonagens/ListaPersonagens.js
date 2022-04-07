@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './ListaPersonagens.css';
-import Personagem from './components/Personagem';
+import Personagem from '../../components/Personagem';
 
 function ListaPersonagens() {
 
@@ -46,4 +46,4 @@ function ListaPersonagens() {
   );
 }
 
-export default App;
+export default ListaPersonagens;
