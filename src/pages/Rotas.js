@@ -16,7 +16,9 @@ const Rotas = () => {
         <Routes>
           <Route path="/" element={<Menu />} />
           <Route path="mesa" element={<Mesa />} />
+          {/* <Route path="/mesa/:id_mesa" element={<Mesa />} /> */}
           <Route path="lista" element={<ListaPersonagens />} />
+          <Route path="lista/:id_mesa" element={<ListaPersonagens />} />
           <Route path="listamesas" element={<ListaMesas />} />
         </Routes>
       </BrowserRouter>

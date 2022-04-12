@@ -1,32 +1,70 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './ListaPersonagens.css';
+
+import API from '../../services/Api';
 import Personagem from '../../components/Personagem';
 
 function ListaPersonagens() {
 
+  const {id_mesa} = useParams();
   const [contador, setContador] = useState(0);
-  const [listaAba, setListaAba] = useState([]);
+  const [listaPersonagem, setListaPersonagem] = useState([]);
+  //console.log(listaPersonagem);
 
-  function novaAbaOnClick() {
+  const novaAbaOnClick = () => {
     
     setContador(contador + 1);
     
-    setListaAba([...listaAba,
-                {pagina: contador}
+    setListaPersonagem([...listaPersonagem,
+                {pagina: contador,
+                 dados: {}
+                }
                ]);
   };
+
+  const onChangePersonagem = (dados, index) => {
+    const personagens = [...listaPersonagem];
+    personagens[index].dados = dados;
+    personagens[index].dados.fk_id_mesa_personagem = id_mesa;
+    setListaPersonagem(personagens);
+  };
+
+  const onSubmit = (e) => {
+    listaPersonagem.forEach((personagem, i) => {
+      console.log(personagem.dados);
+      API.post('/personagens', personagem.dados);
+    });
+    alert('Personagens salvos!');
+    e.preventDefault();
+  };
+
+  const obtemPersonagens = async () => {
+    
+    const personagemUnicaMesa = await API.get(`/personagens/${id_mesa}`);
+    const personagem = [...listaPersonagem];
+    personagem.dados = personagemUnicaMesa.data;
+    personagem.pagina = personagemUnicaMesa.data.length;
+    setListaPersonagem(personagem);
+    
+  }
+
+  useEffect(() => {
+    obtemPersonagens();
+  }, [])
 
   return (
     <div className='ListaPersonagens'>
       <table>
         <thead className='Head'>
           <tr>
-              { listaAba.map((value) =>
-                <th key={value.pagina}>Personagem {value.pagina}</th>
+              { listaPersonagem.map((value) =>
+                 <th key={value.pagina}>Personagem {value.pagina}</th>
               )} 
 
             <th>
               <button onClick={novaAbaOnClick}>+</button>
+              <button onClick={onSubmit}>Salvar</button>
             </th>
           </tr>
           
@@ -34,8 +72,15 @@ function ListaPersonagens() {
 
         <tbody>
           <tr>
-              { listaAba.map((value) =>
-                <td key={value.pagina}>{<Personagem/>}</td>
+              { listaPersonagem.map((personagem, p_index) =>
+                <td key={p_index}>{<Personagem  
+                                      index={p_index} 
+                                      dados={personagem.dados} 
+                                      onChangePersonagem={onChangePersonagem} 
+                                      onSubmit={onSubmit}
+                                   />
+                                  }
+                 </td>
               )} 
           </tr>
           

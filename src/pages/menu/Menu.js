@@ -5,11 +5,11 @@ export default function Menu() {
     return(
     <div>
       <h1>Central RPG</h1>
-      <navbar>
+      <nav>
         <Link to="/mesa" > Adicionar Mesa </Link> |{" "}
         {/* <Link to="/lista"> Listar Personagens</Link> |{" "} */}
         <Link to='/listamesas'>Listar Mesas</Link>
-      </navbar>
+      </nav>
     </div>
     );
 }

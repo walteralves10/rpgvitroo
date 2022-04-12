@@ -1,72 +1,70 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import './Personagem.css';
 
-function Personagem() {
+function Personagem(props) {
 
-    //const [total, setTotal] = useState(0);
-    const [atual, setAtual] = useState(0);
     const [cal, setCal] = useState(0);
-  
-  
-    const somaPVAtual = () => {
-      let aux = atual;
-      aux = parseFloat(cal)  + parseFloat(atual);
-      setAtual(aux);
-    }
-    const subtraiPVAtual = () => {
-      let aux = atual;
-      aux = parseFloat(atual) - parseFloat(cal);
-      setAtual(aux);
-    }
+
+    const soma = (e) => {
+      e.preventDefault();
+      const vida_atual = props.dados.ponto_vida_atual_personagem;
+      onChangeForm('ponto_vida_atual_personagem')({ target: { value: parseInt(vida_atual) + parseInt(cal) }});
+    };
+    
+    const subtrai = (e) => {
+      e.preventDefault();
+      const vida_atual = props.dados.ponto_vida_atual_personagem;
+      onChangeForm('ponto_vida_atual_personagem')({ target: { value: parseInt(vida_atual) - parseInt(cal) }});
+    };
   
     const handleChangeCalcular = (v) => {
       setCal(v.target.value);
-    }
-  
-    const handleChangeAtual = (v) => {
-      setAtual(v.target.value);
-    }
-  
+    };
+
+    const onChangeForm = (key) => (e) => {
+      props.onChangePersonagem({...props.dados,[key]: e.target.value}, props.index);
+    };
+
     return (
-      <div className="Label">     
+      <form className="Label"> 
         <div>
             <label>
-            Nome: 
-            <input 
-                type="text" 
-                placeholder='Sim'
-                // value={this.state.value} 
-                // onChange={this.handleChange} 
-                />
+              Nome: 
+              <input 
+                  type="text" 
+                  placeholder='Sim'
+                  value={props.dados.nome_personagem ?? ''} 
+                  onChange={onChangeForm('nome_personagem')} 
+              />
             </label>
         </div>
         
         <div>
             <label>
-            PV Total: 
-            <input 
-                type="text" 
-                placeholder='Total'
-                //value={total} 
-            // onChange={this.handleChange} 
-            />
+              PV Total: 
+              <input 
+                  type="number" 
+                  placeholder='Total'
+                  value={props.dados.ponto_vida_total_personagem ?? 0} 
+                  onChange={onChangeForm('ponto_vida_total_personagem')}
+              />
             </label>
         </div>
         
         <div>
             <label>
-            PV Atual: 
+              PV Atual: 
                 <input className='InputAtual' 
-                    type="text" 
+                    type="number" 
                     placeholder='Atual'
-                    value={atual} 
-                    onChange={handleChangeAtual} 
+                    value={props.dados.ponto_vida_atual_personagem  ?? 0} 
+                    onChange={onChangeForm('ponto_vida_atual_personagem')}
                 />
             </label>
         
           <input 
             className='InputCal'
-            type="text" 
+            type="number" 
             placeholder='calc...'
             value={cal} 
             onChange={handleChangeCalcular} 
@@ -74,50 +72,93 @@ function Personagem() {
           
           <button 
             className='ButtonSoma'
-            onClick={somaPVAtual}>
+            onClick={soma}
+          >
               +
           </button>
           
           <button 
             className='ButtonSubtrai'
-            onClick={subtraiPVAtual}>
+            onClick={subtrai}
+          >
               -
           </button>     
         
         </div>
         
         <div style={{paddingTop: '15px'}}>
-          <label style={{display: 'inline-grid'}}> FOR
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            FOR
+            <input 
+              type="number"
+              className='InputCal'
+              value={props.dados.forca_personagem  ?? 0} 
+              onChange={onChangeForm('forca_personagem')}
+            />
           </label>
-          <label style={{display: 'inline-grid'}}> DES
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            DES
+            <input 
+              type="number"
+              className='InputCal' 
+              value={props.dados.destreza_personagem  ?? 0} 
+              onChange={onChangeForm('destreza_personagem')}
+            />
           </label>
-          <label style={{display: 'inline-grid'}}> CON
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            CON
+            <input 
+              type="number"
+              className='InputCal' 
+              value={props.dados.constituicao_personagem  ?? 0} 
+              onChange={onChangeForm('constituicao_personagem')}
+            />
           </label>
         </div>
 
         <div>
-          <label style={{display: 'inline-grid'}}> INT
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            INT
+            <input 
+              type="number"
+              className='InputCal' 
+              value={props.dados.inteligencia_personagem  ?? 0} 
+              onChange={onChangeForm('inteligencia_personagem')}
+            />
           </label>
-          <label style={{display: 'inline-grid'}}> SAB
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            SAB
+            <input 
+              type="number"
+              className='InputCal' 
+              value={props.dados.sabedoria_personagem  ?? 0} 
+              onChange={onChangeForm('sabedoria_personagem')}
+            />
           </label>
-          <label style={{display: 'inline-grid'}}> CAR
-            <input className='InputCal' />
+          <label style={{display: 'inline-grid'}}> 
+            CAR
+            <input 
+              type="number"
+              className='InputCal' 
+              value={props.dados.carisma_personagem  ?? 0} 
+              onChange={onChangeForm('carisma_personagem')}
+            />
           </label>
         </div>
 
         <div className='DivTextArea'>
           <label>
             Descrição: 
-            <textarea className='TextAreaDescricao' />
+            <textarea 
+              type="text"
+              className='TextAreaDescricao'
+              value={props.dados.descricao_personagem  ?? ''} 
+              onChange={onChangeForm('descricao_personagem')}
+            />
           </label>
         </div>
         
-      </div>
+      </form>
     );
   }
   
