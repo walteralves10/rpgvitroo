@@ -6,3 +6,9 @@
   .Head {
     color: white;
   }
+
+  .Coluna {
+    border: solid;
+    background: #bacdc8;
+    text-align: center;
+  }

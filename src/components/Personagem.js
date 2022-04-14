@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import './Personagem.css';
+import img from '../assets/img/Icone_Barto_2.png';
 
 function Personagem(props) {
 
@@ -27,6 +28,9 @@ function Personagem(props) {
 
     return (
       <form className="Label"> 
+
+        <img src={img} />
+
         <div>
             <label>
               Nome: 

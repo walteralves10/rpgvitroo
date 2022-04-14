@@ -10,7 +10,6 @@ function ListaPersonagens() {
   const {id_mesa} = useParams();
   const [contador, setContador] = useState(0);
   const [listaPersonagem, setListaPersonagem] = useState([]);
-  //console.log(listaPersonagem);
 
   const novaAbaOnClick = () => {
     
@@ -42,11 +41,16 @@ function ListaPersonagens() {
   const obtemPersonagens = async () => {
     
     const personagemUnicaMesa = await API.get(`/personagens/${id_mesa}`);
-    const personagem = [...listaPersonagem];
-    personagem.dados = personagemUnicaMesa.data;
-    personagem.pagina = personagemUnicaMesa.data.length;
-    setListaPersonagem(personagem);
+    const personagem = []; 
+
+    personagemUnicaMesa.data.forEach((pers, index) => {
+      personagem[index] = {pagina: index, dados: pers};
+    });
+
+    console.log('personagem:');
+    console.log(personagem);
     
+    setListaPersonagem(personagem);
   }
 
   useEffect(() => {
@@ -58,7 +62,7 @@ function ListaPersonagens() {
       <table>
         <thead className='Head'>
           <tr>
-              { listaPersonagem.map((value) =>
+              { listaPersonagem.map((value, index) =>
                  <th key={value.pagina}>Personagem {value.pagina}</th>
               )} 
 
@@ -73,7 +77,7 @@ function ListaPersonagens() {
         <tbody>
           <tr>
               { listaPersonagem.map((personagem, p_index) =>
-                <td key={p_index}>{<Personagem  
+                <td className='Coluna' key={p_index}>{<Personagem  
                                       index={p_index} 
                                       dados={personagem.dados} 
                                       onChangePersonagem={onChangePersonagem} 
