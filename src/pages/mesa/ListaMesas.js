@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../services/Api";
-import './ListaMesas.css'
+//import './ListaMesas.css'
 
 export default function ListaMesas () {
 
@@ -20,21 +20,34 @@ export default function ListaMesas () {
 
   const abrirMesa = (id) => (e) => {
     e.preventDefault();
-
-    //console.log('abrindo mesa');
     navigate(`/lista/${id}`);
   };
 
+  const deletarMesa = (id) => (e) => {
+    e.preventDefault();
+    //api
+    //const mesa = await API.delete('')
+    alert('deletado!');
+    navigate('/listamesas');
+  };
+
   return (
-    <div>
+    
+    <div className="container">
+        {mesas.map((mesa) => 
+        <div key={mesa.id} className="box m-4 is-flex is-flex-direction-row is-justify-content-space-between">
+          <p className="title is-5">{mesa.id}: {mesa.nome} </p>
+          <div>
+            <button className="button" onClick={abrirMesa(mesa.id)} >Abrir</button>
+            
+            <span className="tag is-danger is-large">
+              <button className="delete" onClick={deletarMesa(mesa.id)}></button>
+            </span> 
 
-      {mesas.map((mesa) => 
-        <div key={mesa.id_mesa} className="Item-container">
-          <label className="Item-field">{mesa.id_mesa}: {mesa.nome_mesa} </label>
-          <button onClick={abrirMesa(mesa.id_mesa)} >Abrir</button>
+          </div>
         </div>
-      )}
-
+        )}
     </div>
+
   );
 }

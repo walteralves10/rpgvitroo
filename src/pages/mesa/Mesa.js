@@ -10,12 +10,12 @@ export default  function Mesa() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const novaMesa = {nome_mesa: nomeMesa};
+        const novaMesa = {nome: nomeMesa};
 
         const mesa = await API.post("/mesas", novaMesa);
         console.log(mesa);
 
-        navigate(`/lista/${mesa.data[0].id_mesa}`);
+        navigate(`/lista/${mesa.data[0].id}`);
         //navigate('/lista');
     };
 
@@ -24,19 +24,21 @@ export default  function Mesa() {
     };
 
         return(
-            <div>
-                <h2>Criar nova mesa</h2>
-    
-                <form onSubmit={onSubmit}>
-                    <input
-                        onChange={handleChangeNomeMesa}
-                        type="text"
-                        value={nomeMesa}
-                        placeholder="Nome da mesa..."
-                    />
-                    <button type="submit">Salvar</button>
-                </form>
-            </div>
+            <>
+                <h2 className="is-flex is-justify-content-center title m-4">Criar nova mesa</h2>
+                <div className="is-flex is-justify-content-center"> 
+                    <form className="columns m-4" onSubmit={onSubmit}>
+
+                        <input className="input is-4"
+                            onChange={handleChangeNomeMesa}
+                            type="text"
+                            value={nomeMesa}
+                            placeholder="Nome da mesa..."
+                        />
+                        <button className="button is-success is-1 ml-4" type="submit">Salvar</button>
+                    </form>
+                </div>
+            </>
         );
     };
 //}

@@ -1,0 +1,62 @@
+//@charset "utf-8";
+//@import "../node_modules/bulma/bulma.sass";
+
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$preto-fosco: #282c34;
+$preto-light: #4f545c;
+$preto-dark: #00000c;
+
+$azul:#04509b;
+$azul-light: #507ccc;
+$azul-dark: #00296c;
+$pewter-blue: #71a2b6; 
+
+// Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif;
+$grey-dark: $azul-dark;
+$grey-light: $preto-fosco;
+$primary: $preto-fosco;
+$success: $azul;
+$link: $azul-light;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+//Titles
+$title-color: $azul-light; 
+
+//Button
+
+//box
+$box-background-color: $pewter-blue;
+
+// Update some of Bulma's component variables
+$body-background-color: $preto-fosco;
+
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// .box-custom {
+//     @include control;
+//     background-color: white;
+//     border-radius: 6px;
+//     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
+//     color: #00296c;
+//     /* display: block; */
+//     padding: 1.25rem;
+// }
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/helpers/_all.sass";

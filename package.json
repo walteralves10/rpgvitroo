@@ -1,6 +1,7 @@
 {
   "name": "rpgvitroo",
   "version": "0.1.0",
+  "main": "src/sass/style.scss",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
@@ -14,7 +15,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "css-build": "node-sass --omit-source-map-url sass/style.scss src/css/style.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "react-scripts start css-watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "bulma": "^0.9.3",
+    "node-sass": "^7.0.1"
   }
 }

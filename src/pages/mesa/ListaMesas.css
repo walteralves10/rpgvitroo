@@ -1,3 +1,7 @@
+.Div {
+  text-align: -webkit-center;
+}
+
 .Item-container {
     display: flex;
     flex-direction: row;
