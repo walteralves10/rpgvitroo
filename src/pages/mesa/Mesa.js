@@ -13,10 +13,8 @@ export default  function Mesa() {
         const novaMesa = {nome: nomeMesa};
 
         const mesa = await API.post("/mesas", novaMesa);
-        console.log(mesa);
 
         navigate(`/lista/${mesa.data[0].id}`);
-        //navigate('/lista');
     };
 
     const handleChangeNomeMesa = (v) => {

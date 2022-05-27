@@ -11,6 +11,10 @@ function ListaPersonagens() {
   const [contador, setContador] = useState(0);
   const [listaPersonagem, setListaPersonagem] = useState([]);
 
+  useEffect(() => {
+    obtemPersonagens();
+  }, [])
+
   const novaAbaOnClick = () => {
     
     setContador(contador + 1);
@@ -60,7 +64,7 @@ function ListaPersonagens() {
     if (dados.id_personagem) {
 
       API.put(`/personagens/${dados.id_personagem}`, dados).then(res => {
-        alert(`${dados.nome} alterado!`);
+        //alert(`${dados.nome} alterado!`);
       }).catch(err => {
         alert('Erro ao alterar!');
         console.log(err);
@@ -69,7 +73,7 @@ function ListaPersonagens() {
     } else {
 
       API.post(`/personagens/${id_mesa}`, dados).then(res => {
-        alert('Personagens salvos!');
+        //alert('Personagens salvos!');
       }).catch(err => {
         alert('Erro ao salvar!');
         console.log(err);
@@ -85,13 +89,9 @@ function ListaPersonagens() {
     e.preventDefault();
 
     await API.delete(`/personagens/${id_personagem}/${id_mesa}`);
-    alert('Personagem deletado!');
+    //alert('Personagem deletado!');
     obtemPersonagens();
   }
-
-  useEffect(() => {
-    obtemPersonagens();
-  }, [])
 
   return (
     <div className=''>

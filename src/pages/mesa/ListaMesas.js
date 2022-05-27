@@ -26,9 +26,8 @@ export default function ListaMesas () {
   const deletarMesa = (id) => async (e) => {
     e.preventDefault();
     //api
-    //await API.delete(`/mesas/${id}`);
-    alert(id);
-    navigate('/listamesas');
+    await API.delete(`/mesas_personagens/${id}`);
+    getMesas();
   };
 
   return (
