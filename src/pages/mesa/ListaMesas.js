@@ -23,11 +23,11 @@ export default function ListaMesas () {
     navigate(`/lista/${id}`);
   };
 
-  const deletarMesa = (id) => (e) => {
+  const deletarMesa = (id) => async (e) => {
     e.preventDefault();
     //api
-    //const mesa = await API.delete('')
-    alert('deletado!');
+    //await API.delete(`/mesas/${id}`);
+    alert(id);
     navigate('/listamesas');
   };
 
